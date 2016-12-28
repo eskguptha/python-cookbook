@@ -1,0 +1,371 @@
+#!/usr/bin/python
+
+Data Types
+
+Boolean
+
+Numeric types:
+
+    int: Integers; equivalent to C longs in Python 2.x, non-limited length in Python 3.x
+    long: Long integers of non-limited length; exists only in Python 2.x
+    float: Floating-Point numbers, equivalent to C doubles
+    complex: Complex Numbers
+
+Sequences:
+
+    str: String; represented as a sequence of 8-bit characters in Python 2.x, but as a sequence of Unicode characters (in the range of U+0000 - U+10FFFF) in Python 3.x
+    bytes: a sequence of integers in the range of 0-255; only available in Python 3.x
+    byte array: like bytes, but mutable (see below); only available in Python 3.x
+    list
+    tuple
+
+Sets:
+
+    set: an unordered collection of unique objects; available as a standard type since Python 2.6
+    frozen set: like set, but immutable (see below); available as a standard type since Python 2.6
+
+Mappings:
+
+    dict: Python dictionaries, also called hashmaps or associative arrays,
+===================================================================================================================
+
+immutable types:
+Some objects are mutable, meaning they can't be altered,
+	int, float, long, complex
+	str
+	bytes
+	tuple
+	frozen set
+
+mutable types:
+Some objects are mutable, meaning they ca be altered,
+	byte array
+	list
+	set
+	dict
+
+===================================================================================================================
+Operators
+
+Arithmetic Operators 
+
+Comparison (Relational) Operators
+Assignment Operators
+Logical Operators
+Bitwise Operators
+Membership Operators
+	in, Not in
+Identity Operators
+	is,is not
+
+===================================================================================================================
+List
+cmp(list1, list2)
+	Compares elements of both lists.
+
+len(list)
+	Gives the total length of the list.
+
+max(list)
+	Returns item from the list with max value.
+	
+min(list)
+	Returns item from the list with min value.
+
+list(seq)
+	Converts a tuple into list.
+
+Methods
+###########################
+list.append(obj)
+	Appends object obj to list
+
+list.count(obj)
+	Returns count of how many times obj occurs in list
+
+list.extend(seq)
+	Appends the contents of seq to list
+
+list.index(obj)
+	Returns the lowest index in list that obj appears	
+
+list.insert(index, obj)
+	Inserts object obj into list at offset index
+
+list.pop(obj=list[-1])
+	Removes and returns last object or obj from list
+
+list.remove(obj)
+	Removes object obj from list
+
+list.reverse()
+	Reverses objects of list in place
+
+list.sort([func])
+	Sorts objects of list, use compare func if given
+
+
+
+===================================================================================================================	
+Dictionaries
+
+cmp(dict1, dict2)
+	Compares elements of both dict.
+
+len(dict)
+	Gives the total length of the dictionary. This would be equal to the number of items in the dictionary.
+
+str(dict)
+	Produces a printable string representation of a dictionary
+
+type(variable)
+	Returns the type of the passed variable. If passed variable is dictionary, then it would return a dictionary type.
+
+# Methods	
+
+dict.clear()
+	Removes all elements of dictionary dict	
+
+dict.copy()
+	Returns a shallow copy of dictionary dict
+
+dict.fromkeys()
+	Create a new dictionary with keys from seq and values set to value.
+
+dict.get(key, default=None)
+	For key key, returns value or default if key not in dictionary
+
+dict.has_key(key)
+	Returns true if key in dictionary dict, false otherwise
+
+dict.items()
+	Returns a list of dict's (key, value) tuple pairs	
+
+dict.keys()
+	Returns list of dictionary dict's keys
+
+dict.setdefault(key, default=None)
+	Similar to get(), but will set dict[key]=default if key is not already in dict
+
+dict.update(dict2)
+	Adds dictionary dict2's key-values pairs to dict
+
+dict.values()
+	Returns list of dictionary dict's values
+
+
+===================================================================================================================
+
+Iterators
+Iterator are objects which uses next() method to get next value of sequence.
+__iter__ returns the iterator object itself. This is used in for and in statements.
+
+__next__ method returns the next value from the iterator. If there is no more items to return then it should raise StopIteration exception
+
+Generators
+Generators are iterators, but you can only iterate over them once. It's because they do not store all the values in memory, they generate the values on the fly:
+A generator is a function that produces or yields a sequence of values using yield method. 
+Generators simplifies creation of iterators. A generator is a function that produces a sequence of results instead of a single value.
+Each time the yield statement is executed the function generates a new value.
+
+For performance, especially when you're iterating over a large range, xrange() is usually better. 
+range retruns list
+xrange retrun object
+
+range() can actually be faster in some cases - eg. if iterating over the same sequence multiple times. xrange() has to reconstruct the integer object every time, but range() will have real integer objects. (It will always perform worse in terms of memory however)
+
+xrange() isn't usable in all cases where a real list is needed. For instance, it doesn't support slices, or any list methods.
+
+Yield
+Yield is a keyword that is used like return, except the function will return a generator.
+
+===================================================================================================================
+
+
+Collections:
+Counter:
+Counter is a dict subclass which helps to count hashable objects. Inside it elements are stored as dictionary keys and counts are stored as values which can be zero or negative.
+Methods:
+
+most_common is a method which returns most common elements and their counts from the most common to the least.
+>>> Counter('abracadabra').most_common(3)
+[('a', 5), ('r', 2), ('b', 2)]
+
+Elements:
+Counter objects has a method called elements which returns an iterator over elements repeating each as many times as its count. Elements are returned in arbitrary order.
+>>> c = Counter(a=4, b=2, c=0, d=-2)
+>>> list(c.elements())
+['a', 'a', 'a', 'a', 'b', 'b']
+
+Defaultdict=>it is easy to group a sequence of key-value pairs into a dictionary of lists:
+defaultdict is a dictionary like object which provides all methods provided by dictionary but takes first argument (default_factory) as default data type for the dictionary. Using defaultdict is faster than doing the same using dict.set_default method.
+>>> s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+>>> d = defaultdict(list)
+>>> for k, v in s:
+...     d[k].append(v)
+...
+>>> d.items()
+dict_items([('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])])
+
+Dequee => Returns a new deque object initialized left-to-right (using append()) with data from iterable. If iterable is not specified, the new deque is empty.
+
+
+Orderdict
+d = {'banana': 3, 'apple': 4, 'pear': 1, 'orange': 2}
+OrderedDict(sorted(d.items(), key=lambda t: t[0]))
+
+
+===================================================================================================================
+reload
+
+When the module is imported into a script, the code in the top-level portion of a module is executed only once.
+Therefore, if you want to reexecute the top-level code in a module, you can use the reload() function.
+===================================================================================================================
+Package
+A package is a hierarchical file directory structure that defines a single Python application environment that consists of modules and subpackages and sub-subpackages, and so on.
+
+===================================================================================================================
+Decorators:
+
+A decorator is a special kind of function that either takes a function and returns a function, or takes a class and returns a class. The @ symbol is just syntactic sugar that allows you to decorate something in a way that's easy to read.
+
+Decorators dynamically alter the functionality of a function, method or class without having to directly use subclasses
+
+
+A staticmethod is a method that knows nothing about the class or instance it was called on. It just gets the arguments that were passed, no implicit first argument. It is basically useless in Python -- you can just use a module function instead of a staticmethod.
+
+A classmethod is a method that gets passed the class it was called on, or the class of the instance it was called on, as first argument. This is useful when you want the method to be a factory for the class: since it gets the actual class it was called on as first argument, you can always instantiate the right class, even when subclasses are involved. Observe for instance how dict.fromkeys(), a classmethod, returns an instance of the subclass when called on a subclass:
+
+class Foo(object):
+
+    def a_normal_method(self, arg_1, kwarg_2=None):
+        '''
+        Return a value that is a function of the instance with its
+        attributes, and other arguments such as arg_1 and kwarg2
+        '''
+
+    @staticmethod
+    def a_static_method(arg_0):
+        '''
+		A static method does not receive an implicit first argument.
+        Return a value that is a function of arg_0. It does not know the 
+        instance or class it is called from.
+		It can be called either on the class (such as C.f()) or on an instance (such as C().f()). The instance is ignored except for its class.
+        '''
+
+    @classmethod
+    def a_class_method(cls, arg1):
+        '''
+		A class method receives the class as implicit first argument,
+        Return a value that is a function of the class and other arguments.
+        respects subclassing, it is called with the class it is called from.
+		It can be called either on the class (such as C.f()) or on an instance (such as C().f()). The instance is ignored except for its class. If a class method is called for a derived class, the derived class object is passed as the implied first argument.
+        '''
+
+
+
+The decorators @classmethod, @staticmethod and @property are used on functions defined within classes. Here is how they behave:
+===================================================================================================================
+
+Garbage collection.
+
+Python's memory allocation and deallocation method is automatic. The user does not have to preallocate or deallocate memory by hand as one has to when using dynamic memory allocation in languages such as C or C++. Python uses two strategies for memory allocation reference counting and garbage collection.
+
+When references to an object are removed, the reference count for an object is decremented.
+ When the reference count becomes zero the object is deallocated.
+
+
+    Python maintains a count of the number of references to each object in memory. If a reference count goes to zero then the associated object is no longer live and the memory allocated to that object can be freed up for something else
+    occasionally things called "reference cycles" happen. The garbage collector periodically looks for these and cleans them up. 
+An example would be if you have two objects o1 and o2 such that o1.x == o2 and o2.x == o1. If o1 and o2 are not referenced by anything else then they shouldn't be live. But each of them has a reference count of 1.
+    Certain heuristics are used to speed up garbage collection. For example, recently created objects are more likely to be dead. As objects are created, the garbage collector assigns them to generations. Each object gets one generation, and younger generations are dealt with first.
+
+===================================================================================================================
+
+Copy & Deep Copy
+The difference between shallow and deep copying is only relevant for compound objects (objects that contain other objects, like lists or class instances):
+
+    A shallow copy constructs a new compound object and then (to the extent possible) inserts references into it to the objects found in the original.
+    A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+
+
+===================================================================================================================
+Zip
+This function returns a list of tuples, where the i-th tuple contains the i-th element from each of the argument sequences or iterables.
+
+lambda
+syntax: lambda arguments: expression
+Lambda functions can have any number of arguments but only one expression. The expression is evaluated and returned. Lambda functions can be used wherever function objects are required.
+
+is just a shorthand to create an anonymous function.It can take a parameter, and it returns the value of an expression.
+
+In Python, anonymous function is a function that is defined without a name.
+
+While normal functions are defined using the def keyword, in Python anonymous functions are defined using the lambda keyword.
+
+
+Map
+The map(aFunction, aSequence) function applies a passed-in function to each item in an iterable object and returns a list containing all the function call results.
+takes a function, and applies it to each item in an iterable (such as a list).
+
+>>> a = [1, 2, 3, 4, 5]
+>>> b = [2, 2, 9, 0, 9]
+>>> map(lambda pair: max(pair), zip(a, b))
+[2, 2, 9, 4, 9]
+===================================================================================================================
+
+*args, *kwargs
+*args when we aren't sure how many arguments are going to be passed to a function,  
+**kwargs is used when we dont know how many keyword arguments will be passed to a function, or it can be used to pass the values of a dictionary as keyword arguments. The identifiers args and kwargs are a convention, you could also use *bob and **billy but that would not be wise. 
+===================================================================================================================
+Unit testing
+it provides a rich set of tools for constructing and running tests
+
+It helps you to detect bugs early in the development cycle
+It helps you to write better programs
+It syncs easily with other testing methods and tools
+It will have many fewer bugs
+It is easier to modify in future with very less consequence
+
+Method 					Checks that 
+assertEqual(a, b) 		a == b 	 
+assertNotEqual(a, b) 	a != b 	 
+assertTrue(x) 	bool(x) is True 	 
+assertFalse(x) 	bool(x) is False 	 
+
+
+===================================================================================================================
+
+Packages:
+
+cubes
+elasticsearch-dsl
+pandas
+numpy
+beautifulsoup4
+scrapy
+requests
+django
+django-restframework
+flask
+bottile.py
+redis
+selinium
+redis
+xlwt
+crispyforms
+
+===================================================================================================================
+sort list without function
+data_list = [-5, -23, 5, 0, 23, -6, 23, 67]
+new_list = []
+
+while data_list:
+    minimum = data_list[0]  # arbitrary number in list 
+    for x in data_list: 
+        if x < minimum:
+            minimum = x
+    new_list.append(minimum)
+    data_list.remove(minimum)    
+
+
