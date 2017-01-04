@@ -1,3 +1,5 @@
+
+
 Class − This is a programmer-defined data type, which includes local functions as well as local data. You can think of a class as a template for making many instances of the same kind (or class) of object.
 
 Object − An individual instance of the data structure defined by a class. You define a class once and then make many objects that belong to it. Objects are also known as instance.
@@ -18,12 +20,15 @@ Overloading − a type of polymorphism in which some or all of operators have di
 
 Data Abstraction − Any representation of data in which the implementation details are hidden (abstracted).
 
+Use the abc module to create abstract classes. Use the abstractmethod decorator to declare a method abstract, and declare a class abstract using one of three ways, depending upon your Python version.
+An abstract method can also have an implementation, but it can only be invoked with super from a derived class.
+
+
 Encapsulation − refers to a concept where we encapsulate all the data and member functions together to form an object.
 
 Constructor − refers to a special type of function which will be called automatically whenever there is an object formation from a class.
 
 Destructor − refers to a special type of function which will be called automatically whenever an object is deleted or goes out of scope
-
 
 
 
