@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Python Cook Book</title>
+    <link href="theme/bootstrap.min.css" rel="stylesheet">
+    <script src="theme/jquery.min.js"></script>
+    <script src="theme/bootstrap.min.js"></script>
+    <style>h1{font-size: 26px;color: #1558a7;table{width: 100%;}}</style>
+  </head>
+  <body style="background:#eee;">
+    <div class="container-fluid" style="background:#fff;">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Python Cook Book</h1>
+          </div>
+          <hr/>
+        </div>
+        <div class="row">
+          <div class="col-md-12"><hr/></div>
+        </div>
+          <div class="row">
+
+              <div class="col-md-3">
+                <div class="list-group">
+                    <a class="list-group-item " href="#Pandas">1.Pandas</a>
+                    <a class="list-group-item " href="#Numpy" >2.Numpy</a>
+                    <a class="list-group-item " href="#ExceptionHandling" >3.Exception Handling</a>
+                    <a class="list-group-item " href="#OOPS" >4.OOPS</a>
+                </div>
+              </div>
+              <div class="col-md-9">
+              	<a name="Pandas"></a>
+              	<h1>Pandas</h1>
+
+
+<p class="text-justify">pandas is a Python package providing fast, flexible, and expressive data structures designed to make working with “relational” or “labeled” data both easy and intuitive. It aims to be the fundamental high-level building block for doing practical, real world data analysis in Python. Additionally, it has the broader goal of becoming the most powerful and flexible open source data analysis / manipulation tool available in any language. It is already well on its way toward this goal.</p>
+
+<p>pandas is well suited for many different kinds of data:</p>
+<ul>
+
+<li>Tabular data with heterogeneously-typed columns, as in an SQL table or Excel spreadsheet</li>
+<li>Ordered and unordered (not necessarily fixed-frequency) time series data.</li>
+<li>Arbitrary matrix data (homogeneously typed or heterogeneous) with row and column labels</li>
+<li>Any other form of observational / statistical data sets. The data actually need not be labeled at all to be placed into a pandas data structure</li>
+</ul>
+
+<h2>import modules</h2>
+<pre>
+import pandas as pd
+</pre>
+
+
+
+
+
+
+
+<h3>Create table table-striped table-bordered (that we will be importing)</h3>
+<div class="codehilite"><pre><span></span><span class="n">raw_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Jason&#39;</span><span class="p">,</span> <span class="s1">&#39;Molly&#39;</span><span class="p">,</span> <span class="s1">&#39;Tina&#39;</span><span class="p">,</span> <span class="s1">&#39;Jake&#39;</span><span class="p">,</span> <span class="s1">&#39;Amy&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Miller&#39;</span><span class="p">,</span> <span class="s1">&#39;Jacobson&#39;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s1">&#39;Milner&#39;</span><span class="p">,</span> <span class="s1">&#39;Cooze&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">73</span><span class="p">],</span>
+        <span class="s1">&#39;preTestScore&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">],</span>
+        <span class="s1">&#39;postTestScore&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;25,000&quot;</span><span class="p">,</span> <span class="s2">&quot;94,000&quot;</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">70</span><span class="p">]}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">table table-striped table-bordered</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">,</span> <span class="s1">&#39;last_name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;preTestScore&#39;</span><span class="p">,</span> <span class="s1">&#39;postTestScore&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table  class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jason</td>
+      <td>Miller</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25,000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Molly</td>
+      <td>Jacobson</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94,000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Tina</td>
+      <td>.</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Save table table-striped table-bordered as csv in the working director</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Load a csv</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table  class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Jason</td>
+      <td>Miller</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25,000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Molly</td>
+      <td>Jacobson</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94,000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Tina</td>
+      <td>.</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv with no headers</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>first_name</td>
+      <td>last_name</td>
+      <td>age</td>
+      <td>preTestScore</td>
+      <td>postTestScore</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>Jason</td>
+      <td>Miller</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25,000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>Molly</td>
+      <td>Jacobson</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94,000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>Tina</td>
+      <td>.</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.0</td>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv while specifying column names</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;UID&#39;</span><span class="p">,</span> <span class="s1">&#39;First Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Last Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Pre-Test Score&#39;</span><span class="p">,</span> <span class="s1">&#39;Post-Test Score&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>UID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+      <th>Pre-Test Score</th>
+      <th>Post-Test Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>first_name</td>
+      <td>last_name</td>
+      <td>age</td>
+      <td>preTestScore</td>
+      <td>postTestScore</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>Jason</td>
+      <td>Miller</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25,000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>Molly</td>
+      <td>Jacobson</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94,000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>Tina</td>
+      <td>.</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.0</td>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv with setting the index column to UID</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;UID&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;UID&#39;</span><span class="p">,</span> <span class="s1">&#39;First Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Last Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Pre-Test Score&#39;</span><span class="p">,</span> <span class="s1">&#39;Post-Test Score&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Age</th>
+      <th>Pre-Test Score</th>
+      <th>Post-Test Score</th>
+    </tr>
+    <tr>
+      <th>UID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NaN</th>
+      <td>first_name</td>
+      <td>last_name</td>
+      <td>age</td>
+      <td>preTestScore</td>
+      <td>postTestScore</td>
+    </tr>
+    <tr>
+      <th>0.0</th>
+      <td>Jason</td>
+      <td>Miller</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25,000</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>Molly</td>
+      <td>Jacobson</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94,000</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>Tina</td>
+      <td>.</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>3.0</th>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4.0</th>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv while setting the index columns to First Name and Last Name</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;First Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Last Name&#39;</span><span class="p">],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;UID&#39;</span><span class="p">,</span> <span class="s1">&#39;First Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Last Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Pre-Test Score&#39;</span><span class="p">,</span> <span class="s1">&#39;Post-Test Score&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table  class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>UID</th>
+      <th>Age</th>
+      <th>Pre-Test Score</th>
+      <th>Post-Test Score</th>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>first_name</th>
+      <th>last_name</th>
+      <td>NaN</td>
+      <td>age</td>
+      <td>preTestScore</td>
+      <td>postTestScore</td>
+    </tr>
+    <tr>
+      <th>Jason</th>
+      <th>Miller</th>
+      <td>0.0</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25,000</td>
+    </tr>
+    <tr>
+      <th>Molly</th>
+      <th>Jacobson</th>
+      <td>1.0</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94,000</td>
+    </tr>
+    <tr>
+      <th>Tina</th>
+      <th>.</th>
+      <td>2.0</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>Jake</th>
+      <th>Milner</th>
+      <td>3.0</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>Amy</th>
+      <th>Cooze</th>
+      <td>4.0</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv while specifying "." as missing values</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+
+
+<div>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv while specifying "." and "NA" as missing values in the Last Name column and "." as missing values in Pre-Test Score column</h3>
+<div class="codehilite"><pre><span></span><span class="n">sentinels</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Last Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;NA&#39;</span><span class="p">],</span> <span class="s1">&#39;Pre-Test Score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">]}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="n">sentinels</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table  class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Jason</td>
+      <td>Miller</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25,000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Molly</td>
+      <td>Jacobson</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94,000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Tina</td>
+      <td>.</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv while skipping the top 3 rows</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="n">sentinels</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table  class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2</th>
+      <th>Tina</th>
+      <th>.</th>
+      <th>36</th>
+      <th>31</th>
+      <th>57</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Load a csv while interpreting "," in strings around numbers as thousands seperators</h3>
+<div class="codehilite"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/example.csv&#39;</span><span class="p">,</span> <span class="n">thousands</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<table  class="table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>first_name</th>
+      <th>last_name</th>
+      <th>age</th>
+      <th>preTestScore</th>
+      <th>postTestScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Jason</td>
+      <td>Miller</td>
+      <td>42</td>
+      <td>4</td>
+      <td>25000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Molly</td>
+      <td>Jacobson</td>
+      <td>52</td>
+      <td>24</td>
+      <td>94000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Tina</td>
+      <td>.</td>
+      <td>36</td>
+      <td>31</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Jake</td>
+      <td>Milner</td>
+      <td>24</td>
+      <td>.</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Amy</td>
+      <td>Cooze</td>
+      <td>73</td>
+      <td>.</td>
+      <td>70</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+<div>
+<a name="Numpy"></a>
+<h1>Numpy</h1>
+<p>NumPy&#8217;s main object is the homogeneous multidimensional array. It is a
+table of elements (usually numbers), all of the same type, indexed by a
+tuple of positive integers. In Numpy dimensions are called <em>axes</em>. The
+number of axes is <em>rank</em>.</p>
+<p>For example, the coordinates of a point in 3D space <tt class="docutils literal"><span class="pre">[1,&nbsp;2,&nbsp;1]</span></tt> is an
+array of rank 1, because it has one axis. That axis has a length of 3.
+In the example pictured below, the array has rank 2 (it is 2-dimensional).
+The first dimension (axis) has a length of 2, the second dimension has a
+length of 3.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+ <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Numpy&#8217;s array class is called <tt class="docutils literal"><span class="pre">ndarray</span></tt>. It is also known by the alias
+<tt class="docutils literal"><span class="pre">array</span></tt>. Note that <tt class="docutils literal"><span class="pre">numpy.array</span></tt> is not the same as the Standard
+Python Library class <tt class="docutils literal"><span class="pre">array.array</span></tt>, which only handles one-dimensional
+arrays and offers less functionality. The more important attributes of
+an <tt class="docutils literal"><span class="pre">ndarray</span></tt> object are:</p>
+<dl class="docutils">
+<dt>ndarray.ndim</dt>
+<dd>the number of axes (dimensions) of the array. In the Python world,
+the number of dimensions is referred to as <em>rank</em>.</dd>
+<dt>ndarray.shape</dt>
+<dd>the dimensions of the array. This is a tuple of integers indicating
+the size of the array in each dimension. For a matrix with <em>n</em> rows
+and <em>m</em> columns, <tt class="docutils literal"><span class="pre">shape</span></tt> will be <tt class="docutils literal"><span class="pre">(n,m)</span></tt>. The length of the
+<tt class="docutils literal"><span class="pre">shape</span></tt> tuple is therefore the rank, or number of dimensions,
+<tt class="docutils literal"><span class="pre">ndim</span></tt>.</dd>
+<dt>ndarray.size</dt>
+<dd>the total number of elements of the array. This is equal to the
+product of the elements of <tt class="docutils literal"><span class="pre">shape</span></tt>.</dd>
+<dt>ndarray.dtype</dt>
+<dd>an object describing the type of the elements in the array. One can
+create or specify dtype&#8217;s using standard Python types. Additionally
+NumPy provides types of its own. numpy.int32, numpy.int16, and
+numpy.float64 are some examples.</dd>
+<dt>ndarray.itemsize</dt>
+<dd>the size in bytes of each element of the array. For example, an
+array of elements of type <tt class="docutils literal"><span class="pre">float64</span></tt> has <tt class="docutils literal"><span class="pre">itemsize</span></tt> 8 (=64/8),
+while one of type <tt class="docutils literal"><span class="pre">complex32</span></tt> has <tt class="docutils literal"><span class="pre">itemsize</span></tt> 4 (=32/8). It is
+equivalent to <tt class="docutils literal"><span class="pre">ndarray.dtype.itemsize</span></tt>.</dd>
+<dt>ndarray.data</dt>
+<dd>the buffer containing the actual elements of the array. Normally, we
+won&#8217;t need to use this attribute because we will access the elements
+in an array using indexing facilities.</dd>
+</dl>
+
+
+
+
+
+
+
+
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">array([[ 0,  1,  2,  3,  4],</span>
+<span class="go">       [ 5,  6,  7,  8,  9],</span>
+<span class="go">       [10, 11, 12, 13, 14]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(3, 5)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">ndim</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;int64&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">itemsize</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">size</span>
+<span class="go">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">&lt;type &#39;numpy.ndarray&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">array([6, 7, 8])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">&lt;type &#39;numpy.ndarray&#39;&gt;</span>
+</pre></div>
+</div>
+
+
+
+
+<div>
+<h1>Exception Handling</h1>
+	<a name="ExceptionHandling"></a>
+
+
+
+<p>Python has many built-in exceptions which forces your program to output an error when something in it goes wrong.</p>
+
+<p>When these exceptions occur, it causes the current process to stop and passes it to the calling process until it is handled. If not handled, our program will crash.</p>
+
+<p>For example, if function A calls function B which in turn calls function C and an exception occurs in function C. If it is not handled in C, the exception passes to B and then to A.</p>
+
+<p>If never handled, an error message is spit out and our program come to a sudden, unexpected halt.</p>
+<p>Catching Exceptions in Python</p>
+
+<p>In Python, exceptions can be handled using a try statement.</p>
+
+<p>A critical operation which can raise exception is placed inside the try clause and the code that handles exception is written in except clause.</p>
+
+<p>It is up to us, what operations we perform once we have caught the exception. Here is a simple example.</p>
+<pre>
+import sys
+
+randomList = ['a', 0, 2]
+
+for entry in randomList:
+    try:
+        print("The entry is", entry)
+        r = 1/int(entry)
+        break
+    except:
+        print("Oops!",sys.exc_info()[0],"occured.")
+        print("Next entry.")
+        print()
+print("The reciprocal of",entry,"is",r)
+
+</pre>
+
+
+
+<p>In this program, we loop until the user enters an integer that has a valid reciprocal. The portion that can cause exception is placed inside try block.</p>
+
+<p>If no exception occurs, except block is skipped and normal flow continues. But if any exception occurs, it is caught by the except block.</p>
+
+<p>Here, we print the name of the exception using ex_info() function inside sys module and ask the user to try again. We can see that the values 'a' and '1.3' causes ValueError and '0' causes ZeroDivisionError.
+Catching Specific Exceptions in Python</p>
+
+<p>In the above example, we did not mention any exception in the except clause.</p>
+
+<p>This is not a good programming practice as it will catch all exceptions and handle every case in the same way. We can specify which exceptions an except clause will catch.</p>
+
+<p>A try clause can have any number of except clause to handle them differently but only one will be executed in case an exception occurs.</p>
+
+We can use a tuple of values to specify multiple exceptions in an except clause. Here is an example pseudo code.
+<pre>
+try:
+   # do something
+   pass
+
+except ValueError:
+   # handle ValueError exception
+   pass
+
+except (TypeError, ZeroDivisionError):
+   # handle multiple exceptions
+   # TypeError and ZeroDivisionError
+   pass
+
+except:
+   # handle all other exceptions
+   pass
+</pre>
+Raising Exceptions
+
+In Python programming, exceptions are raised when corresponding errors occur at run time, but we can forcefully raise it using the keyword raise.
+
+We can also optionally pass in value to the exception to clarify why that exception was raised.
+<pre>
+>>> raise KeyboardInterrupt
+Traceback (most recent call last):
+...
+KeyboardInterrupt
+
+>>> raise MemoryError("This is an argument")
+Traceback (most recent call last):
+...
+MemoryError: This is an argument
+
+>>> try:
+...     a = int(input("Enter a positive integer: "))
+...     if a <= 0:
+...         raise ValueError("That is not a positive number!")
+... except ValueError as ve:
+...     print(ve)
+...    
+Enter a positive integer: -2
+That is not a positive number!
+
+try...finally
+</pre>
+The try statement in Python can have an optional finally clause. This clause is executed no matter what, and is generally used to release external resources.
+
+For example, we may be connected to a remote data center through the network or working with a file or working with a Graphical User Interface (GUI).
+
+In all these circumstances, we must clean up the resource once used, whether it was successful or not. These actions (closing a file, GUI or disconnecting from network) are performed in the finally clause to guarantee execution.
+
+Here is an example of file operations to illustrate this.
+<pre>
+try:
+   f = open("test.txt",encoding = 'utf-8')
+   # perform file operations
+finally:
+   f.close()
+</pre>
+This type of construct makes sure the file is closed even if an exception occurs.
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div>
+	
+<a name="OOPS"></a>
+<h1>OOPS</h1>
+
+
+
+
+
+<p>
+There are three widely used programming paradigms there: procedural programming, 
+functional programming, and object-oriented programming. Python supports both 
+procedural and object-oriented programming. There is some support for 
+functional programming, too. 
+</p>
+
+<p>
+<em>Object-oriented programming (OOP)</em> is a programming paradigm that uses 
+objects and their interactions to design applications and computer programs.
+</p>
+
+<p>
+There are some basic programming concepts in OOP:
+</p>
+
+<ul>
+<li>Abstraction</li>
+<li>Polymorphism</li>
+<li>Encapsulation</li>
+<li>Inheritance</li>
+</ul>
+
+<p>
+The <em>abstraction</em> is simplifying complex reality by modeling classes 
+appropriate to the problem. The <em>polymorphism</em> is the process of using 
+an operator or function in different ways for different data input. The 
+<em>encapsulation</em> hides the implementation details of a class from other objects. 
+The <em>inheritance</em> is a way to form new classes  using classes that have 
+already been defined.
+</p>
+
+
+<h2>Objects</h2>
+
+<p>
+Everything in Python is an object. Objects are basic building blocks of 
+a Python OOP program. 
+</p>
+
+<div class="codehead">object_types.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# object_types.py
+
+import sys
+
+def function(): pass
+
+print type(1)
+print type("")
+print type([])
+print type({})
+print type(())
+print type(object)
+print type(function)
+print type(sys)
+</pre>
+
+<p>
+In this example we show that all these entities are in fact objects. 
+The <code>type()</code> function returns the
+type of the object specified. 
+</p>
+
+<pre>
+$ ./object_types.py 
+&lt;type 'int'&gt;
+&lt;type 'str'&gt;
+&lt;type 'list'&gt;
+&lt;type 'dict'&gt;
+&lt;type 'tuple'&gt;
+&lt;type 'type'&gt;
+&lt;type 'function'&gt;
+&lt;type 'module'&gt;
+</pre>
+
+<p>
+Integers, strings, lists, dictionaries, tuples, functions, and modules are Python 
+objects.
+</p>
+
+
+<h2>The class keyword</h2>
+
+<p>
+The previous objects were all built-in objects of the Python programming language. 
+The user defined objects are created
+using the <code>class</code> keyword. The class is a blueprint 
+that defines a nature of a future object. 
+From classes we construct instances. An <em>instance</em> is a specific 
+object created from a particular class. 
+For example, Huck might be an instance of a Dog class. 
+</p>
+
+<div class="codehead">first_object.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# first_object.py
+
+class First(object):
+   pass
+
+fr = First()
+
+print type(fr)
+print type(First)
+</pre>
+
+<p>
+This is our first class. The body of the class is left empty for now. It is a
+convention to give classes a name that starts with a capital letter.
+</p>
+
+<pre class="explanation">
+class First(object):
+   pass
+</pre>
+
+<p>
+Here we define the <code>First</code> class. It inherits from the base <code>object</code>.
+This is so called new-style class definition.
+</p>
+
+<pre class="explanation">
+fr = First()
+</pre>
+
+<p>
+Here we create a new instance of the <code>First</code> class. Or in other 
+words, we instantiate the <code>First</code> class. The <code>fr</code> is a 
+reference to our new object. 
+</p>
+
+<pre>
+$ ./first_object.py 
+&lt;class '__main__.First'&gt;
+&lt;type 'type'&gt;
+</pre>
+
+<p>
+Here we see that <code>fr</code> is an instance object of 
+the <code>First</code> class.
+</p>
+
+<p>
+Inside a class, we can define attributes and methods. An <em>attribute</em> is 
+a characteristic of an object. This can be for example a salary of an employee. 
+A <em>method</em> defines operations that we can perform with our objects. A method 
+might define a cancellation of an account. Technically, attributes are variables 
+and methods are functions defined inside a class. 
+</p>
+
+
+<h2>Object initialization</h2>
+
+<p>
+A special method called <code>__init__()</code> is used to initialize an object. 
+</p>
+
+<div class="codehead">object_initialization.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# object_initialization.py
+
+class Being(object):
+    
+    def __init__(self):
+        print "Being is initialized"
+
+Being()
+</pre>
+
+<p>
+We have a <code>Being</code> class. The special method 
+<code>__init__()</code> is called automatically right after 
+the object has been created. 
+</p>
+
+<pre>
+$ ./object_initialization.py 
+Being is initialized
+</pre>
+
+<p>
+This is the example output.
+</p>
+
+
+<h2>Attributes</h2>
+
+<p>
+Attributes are characteristics of an object. Attributes are set in the
+<code>__init__()</code> method.
+</p>
+
+<div class="codehead">attributes.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# attributes.py
+
+class Cat(object):
+
+   def __init__(self, name):
+      self.name = name
+
+missy = Cat('Missy')
+lucky = Cat('Lucky')
+
+print missy.name
+print lucky.name
+</pre>
+
+<p>
+In this code example, we have a <code>Cat</code> class. The special method 
+<code>__init__()</code> is called automatically right after 
+the object has been created. 
+</p>
+
+<pre class="explanation">
+def __init__(self, name):
+</pre>
+
+<p>
+Each method in a class definition begins with a reference to the instance 
+object. It is by convention named <code>self</code>. There is nothing special 
+about the <code>self</code> name. We could name it this, for example. The second 
+parameter, <code>name</code>, is the argument. The value is passed during the 
+class initialization. 
+</p>
+
+<pre class="explanation">
+self.name = name
+</pre>
+
+<p>
+Here we pass an attribute to an instance object. 
+</p>
+
+<pre class="explanation">
+missy = Cat('Missy')
+lucky = Cat('Lucky')
+</pre>
+
+<p>
+Here we create two objects: cats Missy and Lucky. The number of 
+arguments must correspond to the <code>__init__()</code> method of the class 
+definition. The 'Missy' and 'Lucky' strings become the <code>name</code>
+parameter of the <code>__init__()</code> method.
+</p>
+
+<pre class="explanation">
+print missy.name
+print lucky.name
+</pre>
+
+<p>
+Here we print the attributes of the two cat objects. Each instance of a 
+class can have their own attributes. 
+</p>
+
+<pre>
+$ ./attributes.py 
+Missy
+Lucky
+</pre>
+
+<p>
+The attributes can be assigned dynamically, not just during initialization. 
+This is demonstrated by the next example. 
+</p>
+
+<div class="codehead">attributes_dynamic.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# attributes_dynamic.py
+
+class Person(object):
+   pass
+
+p = Person()
+p.age = 24
+p.name = "Peter"
+
+print "{0} is {1} years old".format(p.name, p.age)
+</pre>
+
+<p>
+We define and create an empty <code>Person</code> class. 
+</p>
+
+<pre class="explanation">
+p.age = 24
+p.name = "Peter"
+</pre>
+
+<p>
+Here we create two attributes dynamically: age and name.
+</p>
+
+<pre>
+$ ./attributes_dynamic.py 
+24 is Peter years old
+</pre>
+
+<p>
+So far, we have been talking about the instance attributes. In Python there 
+are also so called <em>class object attributes</em>. 
+Class object attributes are same for all instances of a class. 
+</p>
+
+<div class="codehead">class_attribute.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# class_attribute.py
+
+class Cat(object):
+   species = 'mammal'
+
+   def __init__(self, name, age):
+       
+      self.name = name
+      self.age = age
+
+
+missy = Cat('Missy', 3)
+lucky = Cat('Lucky', 5)
+
+print missy.name, missy.age
+print lucky.name, lucky.age
+
+print Cat.species
+print missy.__class__.species
+print lucky.__class__.species
+</pre>
+
+<p>
+In our example, we have two cats with specific name and age attributes. Both
+cats share some characteristics. Missy and Lucky are both mammals. This is 
+reflected in a class level attribute species. The attribute is defined outside 
+any method name in the body of a class. 
+</p>
+
+<pre class="explanation">
+print Cat.species
+print missy.__class__.species
+</pre>
+
+<p>
+There are two ways, how we can access the class object attributes. Either via 
+the name of the <code>Cat</code> class, or with the help of a special 
+<code>__class__</code> attribute. 
+</p>
+
+<pre>
+$ ./class_attribute.py 
+Missy 3
+Lucky 5
+mammal
+mammal
+mammal
+</pre>
+
+
+<h2>Methods</h2>
+
+<p>
+Methods are functions defined inside the body of a class. They are used to 
+perform operations with the attributes of our objects. Methods are essential 
+in the <em>encapsulation</em> concept of the OOP paradigm. For example, we might 
+have a <code>connect()</code> method in our <code>AccessDatabase</code> class. 
+We need not to be informed how exactly the method connect connects to the database. 
+We only know that it is used to connect to a database. This is essential in 
+dividing responsibilities in programming, especially in large applications. 
+</p>
+
+<div class="codehead">methods.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# methods.py
+
+class Circle(object):
+
+   pi = 3.141592
+
+   def __init__(self, radius=1):
+       self.radius = radius 
+
+   def area(self):
+       return self.radius * self.radius * Circle.pi
+
+   def setRadius(self, radius):
+       self.radius = radius
+
+   def getRadius(self):
+       return self.radius
+
+
+c = Circle()
+
+c.setRadius(5)
+print c.getRadius()
+print c.area()
+</pre>
+
+<p>
+In the code example, we have a <code>Circle</code> class. We define 
+three new methods.
+</p>
+
+<pre class="explanation">
+def area(self):
+    return self.radius * self.radius * Circle.pi
+</pre>
+
+<p>
+The <code>area()</code> method returns the area of a circle. 
+</p>
+
+<pre class="explanation">
+def setRadius(self, radius):
+    self.radius = radius
+</pre>
+
+<p>
+The <code>setRadius()</code> method sets a new value for a radius attribute. 
+</p>
+
+<pre class="explanation">
+def getRadius(self):
+    return self.radius
+</pre>
+
+<p>
+The <code>getRadius()</code> method returns the current radius. 
+</p>
+
+<pre class="explanation">
+c.setRadius(5)
+</pre>
+
+<p>
+The method is called on an instance object. The <code>c</code> object is paired with 
+the <code>self</code> parameter of the class definition.
+The number 5 is paired with the <code>radius</code> parameter. 
+</p>
+
+<pre>
+$ ./methods.py 
+5
+78.5398
+</pre>
+
+<p>
+In Python, we can call methods in two ways. There are <em>bounded</em> 
+and <em>unbounded</em> method calls. 
+</p>
+
+<div class="codehead">bound_unbound_methods.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# bound_unbound_methods.py
+
+class Methods:
+   def __init__(self):
+      self.name = 'Methods'
+
+   def getName(self):
+      return self.name
+
+
+m = Methods()
+
+print m.getName()
+print Methods.getName(m)
+</pre>
+
+<p>
+In this example, we demostrate both method calls. 
+</p>
+
+<pre class="explanation">
+print m.getName()
+</pre>
+
+<p>
+This is the <em>bounded</em> method call. The Python interpreter automatically 
+pairs the <code>m</code> instance with the self parameter.
+</p>
+
+<pre class="explanation">
+print Methods.getName(m)
+</pre>
+
+<p>
+And this is the <em>unbounded</em> method call. The instance object is 
+explicitly given to the <code>getName()</code> method. 
+</p>
+
+<pre>
+$ ./bound_unbound_methods.py 
+Methods
+Methods
+</pre>
+
+
+<h2>Inheritance</h2>
+
+<p>
+The inheritance is a way to form new classes using classes that have 
+already been defined. The newly formed classes are called <em>derived</em>
+classes, the classes that we derive from are called <em>base</em> classes. 
+Important benefits of inheritance are code reuse and reduction of complexity 
+of a program. The derived classes (descendants) override or extend the 
+functionality of base classes (ancestors). 
+</p>
+
+<div class="codehead">inheritance.py</div>
+<pre class="code">
+#!/usr/bin/python
+
+# inheritance.py
+
+class Animal(object):
+
+   def __init__(self):
+      print "Animal created"
+
+   def whoAmI(self):
+      print "Animal"
+
+   def eat(self):
+      print "Eating"
+
+
+class Dog(Animal):
+
+   def __init__(self):
+      Animal.__init__(self)
+      print "Dog created"
+
+   def whoAmI(self):
+      print "Dog"
+
+   def bark(self):
+      print "Woof!"
+
+d = Dog()
+d.whoAmI()
+d.eat()
+d.bark()
+</pre>
+
+<p>
+In this example, we have two classes: <code>Animal</code> and <code>Dog</code>. 
+The <code>Animal</code> is the base class, the <code>Dog</code> is the derived class. 
+The derived class inherits the functionality of the base class. It is shown 
+by the <code>eat()</code> method. The derived class modifies existing behaviour 
+of the base class, shown by the <code>whoAmI()</code> method. Finally, the derived 
+class extends the functionality of the base class, by defining a new 
+<code>bark()</code> method. 
+</p>
+
+<pre class="explanation">
+class Dog(Animal):
+
+   def __init__(self):
+      Animal.__init__(self)
+      print "Dog created"
+</pre>
+
+<p>
+We put the ancestor classes in round brackets after the name of the 
+descendant class. If the derived class provides its own <code>__init__()</code> 
+method, it must explicitly call the base class <code>__init__()</code> method.
+</p>
+
+<pre>
+$ ./inherit.py 
+Animal created
+Dog created
+Dog
+Eating
+Woof!
+</pre>
+
+
+<h2>Polymorphism</h2>
+
+<p>
+The polymorphism is the process of using an operator or function in
+ different ways for different data input.
+In practical terms, polymorphism means that if class B inherits from 
+class A, it doesn’t have to inherit everything about class A; it can 
+do some of the things that class A does differently. (wikipedia)
+</p>
+
+<pre class="code">
+#!/usr/bin/python
+
+# basic.py
+
+
+a = "alfa"
+b = (1, 2, 3, 4)
+c = ['o', 'm', 'e', 'g', 'a']
+
+print a[2]
+print b[1]
+print c[3]
+</pre>
+
+<p>
+Python programming language uses polymorphism extensively in built-in types. 
+Here we use the same indexing operator for three different data types. 
+</p>
+
+<pre>
+$ ./basic.py 
+f
+2
+g
+</pre>
+
+<p>
+Polymorphism is most commonly used when dealing with inheritance. 
+</p>
+
+<pre class="code">
+#!/usr/bin/python
+
+# polymorphism.py
+
+
+class Animal:
+   def __init__(self, name=''):
+      self.name = name
+
+   def talk(self):
+      pass
+
+
+class Cat(Animal):
+   def talk(self):
+      print "Meow!"
+
+
+class Dog(Animal):
+   def talk(self):
+      print "Woof!"
+
+
+a = Animal()
+a.talk()
+
+c = Cat("Missy")
+c.talk()
+
+d = Dog("Rocky")
+d.talk()
+</pre>
+
+<p>
+Here we have two species: a dog and a cat. Both are animals. The <code>Dog</code> class 
+and the <code>Cat</code> class inherit the <code>Animal</code> class. 
+They have a <code>talk()</code> method, which gives different output for them.  
+</p>
+
+<pre>
+$ ./polymorphism.py 
+Meow!
+Woof!
+</pre>
+
+
+<h2>Special Methods</h2>
+
+<p>
+Classes in Python programming language can implement certain operations 
+with special method names. These methods are not called directly, but by a 
+specific language syntax. This is similar to what is known as
+<em>operator overloading</em> in C++ or Ruby.
+</p>
+
+<pre class="code">
+#!/usr/bin/python
+
+# book.py
+
+class Book:
+   def __init__(self, title, author, pages):
+      print "A book is created"
+      self.title = title
+      self.author = author
+      self.pages = pages
+
+   def __str__(self):
+      return "Title:%s , author:%s, pages:%s " % \
+              (self.title, self.author, self.pages)
+
+   def __len__(self):
+      return self.pages
+
+   def __del__(self):
+      print "A book is destroyed"
+
+
+book = Book("Inside Steve's Brain", "Leander Kahney", 304)
+
+print book
+print len(book)
+del book
+</pre>
+
+<p>
+In our code example, we have a book class. Here we introduce four special methods. 
+The <code>__init__()</code>, <code>__str__()</code>, 
+<code>__len__()</code> and the <code>__del__()</code> methods. 
+</p>
+
+<pre class="explanation">
+book = Book("Inside Steve's Brain", "Leander Kahney", 304)
+</pre>
+
+<p>
+Here we call the <code>__init__()</code> method. The method creates a 
+new instance of a Book class.
+</p>
+
+<pre class="explanation">
+print book
+</pre>
+
+<p>
+The print keyword calls the <code>__str__()</code> method. This method 
+should return an informal string representation of an object. 
+</p>
+
+<pre class="explanation">
+print len(book)
+</pre>
+
+<p>
+The <code>len()</code> function invokes the <code>__len__()</code> 
+method. In our case, we print the number of pages of our book.
+</p>
+
+<pre class="explanation">
+del book
+</pre>
+
+<p>
+The del keyword deletes an object. It calls the <code>__del__()</code> method.
+</p>
+
+<p>
+In the next example we implement a vector class and demonstrate addition and 
+substraction operations on it. 
+</p>
+
+<pre class="code">
+#!/usr/bin/python
+
+# vector.py
+
+
+class Vector:
+
+  def __init__(self, data):
+    self.data = data
+
+  def __str__(self):
+    return repr(self.data)
+
+  def __add__(self, other):
+    data = []
+    for j in range(len(self.data)):
+      data.append(self.data[j] + other.data[j])
+    return Vector(data)
+
+  def __sub__(self, other):
+    data = []
+    for j in range(len(self.data)):
+      data.append(self.data[j] - other.data[j])
+    return Vector(data)
+
+
+x = Vector([1, 2, 3])
+y = Vector([3, 0, 2])
+print x + y
+print y - x
+</pre>
+
+<p>
+
+</p>
+
+<pre class="explanation">
+def __add__(self, other):
+  data = []
+  for j in range(len(self.data)):
+    data.append(self.data[j] + other.data[j])
+  return Vector(data)
+</pre>
+
+<p>
+Here we implement the addition operation of vectors. The <code>__add__()</code> 
+method is called, when we add two <code>Vector</code> objects with the 
+<code>+</code> operator. Here we add each member of the respective vectors. 
+</p>
+
+<pre>
+$ ./vector.py 
+[4, 2, 5]
+[2, -2, -1]
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+          </div>
+      </div>
+  </body>
+
+</html>
+
+
