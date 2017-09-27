@@ -1,4 +1,4 @@
-What are the ways to write a function using call by reference?
+#What are the ways to write a function using call by reference?
 
 Arguments in python are passed as an assignment. This assignment creates an object that has no relationship between an argument name in source and target. The procedure to write the function using call by reference includes:
 The tuple result can be returned to the object which called it. The example below shows it:
@@ -18,7 +18,7 @@ args = ['string', 10]
 func1(args)
 print args[0], args[1] 
 #This prints the value stored in the array of ‘a’
-What are the commands that are used to copy an object in Python?
+#What are the commands that are used to copy an object in Python?
 
 The command that is used to copy an object in python includes: 
 - copy.copy() function: This makes a copy of the file from source to destination. It returns a shallow copy of the parameter that is passed. 
@@ -86,10 +86,11 @@ self._outfile.write(s.upper())
 def __getattr__(self, name):
 return getattr(self._out, name)
 The write() method that is used in the upcase class converts the string to the uppercase before calling another method. The delegation is being given using the self.__outfile object.
-What is the function of “self”?
+#What is the function of “self”?
 
 “Self” is a variable that represent the instance of the object to itself. In most of the object oriented programming language, this is passed as to the methods as a hidden parameters that is defined by an object. But, in python it is declare it and pass it explicitly. It is the first argument that gets created in the instance of the class A and the parameters to the methods are passed automatically. It refers to separate instance of the variable for individual objects. This is the first argument that is used in the class instance and the “self” method is defined explicitly to all the methods that are used and present. The variables are referred as “self.xxx”.
-How is “self” explicitly defined in a method?
+
+#How is “self” explicitly defined in a method?
 
 “Self” is a reference variable and an instance attribute that is used instead of the local variable inside the class. The function or the variable of the self like self.x or self.meth() can be used in case the class is not known. There are no variables declared as local. It doesn’t have any syntax and it allow the reference to be passed explicity or call the method for the class that is in use. The use of writebaseclass.methodname(self, <argument list>) shows that the method of _init_() can be extended to the base class methods. This also solves the problem that is syntactic by using the assignment and the local variables. This tells a way to the interpreter the values that are to be used for the instance variables and local variables. The use of explicit self.var solves the problem mentioned above.
 What is the use of join() for a string rather than list or tuple method?
@@ -98,7 +99,7 @@ The functions and the methods that are used for the functionality uses the strin
 ", ".join(['1', '2', '4', '8', '16']) that results in "1, 2, 4, 8, 16"
 The string variable that is used provide a fixed string literal to allow the names that are used to be bounded to the strings. join() is a string method that is used to provide a separator string to use the function over the sequence of the string and insert the function to an adjacent elements. The method uses any number of arguments that follow some rules that has to be put up for the sequence objects that the class defines for itself. The join is used for the string module that is used to join the string characters together as it is given in the program. The example is given as:
 string.join(['1', '2', '4', '8', '16'], ", ")
-What is the process of compilation and linking in python?
+#What is the process of compilation and linking in python?
 
 The compiling and linking allows the new extensions to be compiled properly without any error and the linking can be done only when it passes the compiled procedure. If the dynamic loading is used then it depends on the style that is being provided with the system. The python interpreter can be used to provide the dynamic loading of the configuration setup files and will rebuild the interpreter. 
 The steps that is required in this as:
@@ -116,7 +117,8 @@ The values will be extracted as:
 - If the object is a list then PyListSize() is having the same function that is defined for the tuple and PyList_GetItem() that also return the data items at a specified index.
 - Strings uses PyString_Size() to return the length of the value and PyString_AsString() that return the pointer to its value. 
 - To check the type of the object and the extracted values use of methods like PyString_Check(), PyTuple_Check(), PyList_Check(), etc are used.
-What are the steps required to make a script executable on Unix?
+
+#What are the steps required to make a script executable on Unix?
 
 The steps that are required to make a script executable are to:
 - First create a script file and write the code that has to be executed in it.
@@ -129,7 +131,8 @@ The steps that are required to make a script executable are to:
 # Write your code here
 exec python $0 ${1+"$@"}
 # Write the function that need to be included.
-How does global value mutation used for thread-safety?
+
+#How does global value mutation used for thread-safety?
 
 The global interpreter lock is used to allow the running of the thread one at a time. This is internal to the program only and used to distribute the functionality along all the virtual machines that are used. Python allows the switching between the threads to be performed by using the byte code instructions that are used to provide platform-independence. The sys.setcheckinterval() method is used that allow the switching to occur during the implementation of the program and the instruction. This provides the understanding in the field of accounting to use the byte code implementation that makes it portable to use. The atomicity can be provided such that the shared variables can be given as built-in data types.
 Write a program to read and write the binary data using python?
@@ -141,7 +144,8 @@ f = open(file-name, "rb")
 s = f.read(8)
 x, y, z = struct.unpack(">hhl", s)
 The ‘>” is used to show the format string that allows the string to be converted in big-endian data form. For homogenous list of data the array module can be used that will allow the data to be kept more organized fashion.
-What is the process to run sub-process with pipes that connect both input and output?
+
+#What is the process to run sub-process with pipes that connect both input and output?
 
 The popen2() module is used to run the sub-process but due to some difficulty in processing like creation of deadlock that keep a process blocked that wait for the output from the child and child is waiting for the input. The dead lock occurs due to the fact that parent and child doesn’t have the synchronization and both are waiting to get the processor to provide the resources to one another. Use of popen3() method allow the reading of stdout and stderr to take place where the internal buffer increases and there is no read() takes place to share the resources. popen2() take care of the deadlock by providing the methods like wait() and waitpid() that finishes a process first and when a request comes it hands over the responsibility to the process that is waiting for the resources. 
 The program is used to show the process and run it.
@@ -150,7 +154,8 @@ fromchild, tochild = popen2.popen2("command")
 tochild.write("input\n")
 tochild.flush()
 output = fromchild.readline()
-What are the different ways to generate random numbers?
+
+#What are the different ways to generate random numbers?
 
 Random module is the standard module that is used to generate the random number. 
 The method is defined as:
